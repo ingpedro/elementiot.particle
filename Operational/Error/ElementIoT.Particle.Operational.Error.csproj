@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Logging\ElementIoT.Particle.Operational.Logging.csproj" />
+    <ProjectReference Include="..\Resource\ElementIoT.Particle.Operational.Resource.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="md &quot;$(SolutionDir)\..\lib\Particle&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)\..\lib\Particle\$(ProjectName).dll&quot;" />
+  </Target>
+
+</Project>

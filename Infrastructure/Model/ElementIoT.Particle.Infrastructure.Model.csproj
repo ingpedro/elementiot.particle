@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="5.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Operational\Error\ElementIoT.Particle.Operational.Error.csproj" />
+    <ProjectReference Include="..\..\Operational\Logging\ElementIoT.Particle.Operational.Logging.csproj" />
+    <ProjectReference Include="..\..\Operational\Resource\ElementIoT.Particle.Operational.Resource.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="md &quot;$(SolutionDir)\..\lib\Particle&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)\..\lib\Particle\$(ProjectName).dll&quot;" />
+  </Target>
+
+</Project>

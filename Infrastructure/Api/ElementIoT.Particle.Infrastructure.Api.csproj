@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="md &quot;$(SolutionDir)\..\lib\Particle&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)\..\lib\Particle\$(ProjectName).dll&quot;" />
+  </Target>
+
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy
+      SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg"
+      DestinationFolder="$(SolutionDir)..\lib"
+    />
+  </Target>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Operational\Error\ElementIoT.Particle.Operational.Error.csproj" />
+    <ProjectReference Include="..\..\Operational\Logging\ElementIoT.Particle.Operational.Logging.csproj" />
+    <ProjectReference Include="..\..\Operational\Resource\ElementIoT.Particle.Operational.Resource.csproj" />
+    <ProjectReference Include="..\..\Operational\Utility\ElementIoT.Particle.Operational.Utility.csproj" />
+    <ProjectReference Include="..\..\Operational\Validation\ElementIoT.Particle.Operational.Validation.csproj" />
+    <ProjectReference Include="..\Model\ElementIoT.Particle.Infrastructure.Model.csproj" />
+    <ProjectReference Include="..\Processor\ElementIoT.Particle.Infrastructure.Processor.csproj" />
+  </ItemGroup>
+
+</Project>
