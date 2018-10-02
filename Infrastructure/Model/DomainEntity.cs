@@ -12,7 +12,7 @@ namespace ElementIoT.Particle.Infrastructure.Model
         #region Fields
         #endregion
 
-        #region Prioperties
+        #region Properties
 
         /// <summary>
         /// Gets the identifier.
@@ -21,6 +21,42 @@ namespace ElementIoT.Particle.Infrastructure.Model
         /// The identifier.
         /// </value>
         public Guid Key
+        { get; set; }
+
+        /// <summary>
+        /// Gets or sets the alias of the user that created this instance.
+        /// </summary>
+        /// <value>
+        /// The alias of the suer.
+        /// </value>
+        public string CreatedBy
+        { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date and time when this instance was created.
+        /// </summary>
+        /// <value>
+        /// The created date.
+        /// </value>
+        public DateTime CreatedDate
+        { get; set; }
+
+        /// <summary>
+        /// Gets or sets the alias of the user that last updated this instance.
+        /// </summary>
+        /// <value>
+        /// The alias of the suer.
+        /// </value>
+        public string UpdatedBy
+        { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date and time when this instance was last updated.
+        /// </summary>
+        /// <value>
+        /// The updated date.
+        /// </value>
+        public DateTime UpdatedDate
         { get; set; }
 
         #endregion
