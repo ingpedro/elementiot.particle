@@ -12,7 +12,7 @@ namespace ElementIoT.Particle.Operational.Error
     /// Defines an error handling policy that uses the configured handler for the API
     /// </summary>
     /// <seealso cref="ElementIoT.Particle.Operational.Error.IErrorPolicy" />
-    public class ApiErrorPolicy: IErrorPolicy
+    public class ApiErrorPolicy : IErrorPolicy
     {
         #region Fields
         #endregion
@@ -63,7 +63,12 @@ namespace ElementIoT.Particle.Operational.Error
             // or we received an unhandled exception and we wrapped it here.
             if (!handledEx.IsHandled)
             {
-                this.LogService.LogError(new LogEntry(ex.ToString()));
+                this.LogService.LogError(
+                new LogEntry()
+                {
+                    Error = handledEx,
+                    Message = CommonErrorMessages.Error_Unhandled_Exception
+                });
 
                 handledEx.IsHandled = true;
             }
