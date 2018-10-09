@@ -32,6 +32,10 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         public Guid OperationId
         { get; set; }
 
+        [JsonIgnore]
+        public string SenderIdentity
+        { get; set; }
+
         #endregion
 
         #region Constructors
@@ -43,6 +47,8 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         {
             this.ReceivedDate = DateTime.UtcNow;
             this.HandledDate = null;
+
+            this.SenderIdentity = Environment.UserName;
         }
 
         #endregion
