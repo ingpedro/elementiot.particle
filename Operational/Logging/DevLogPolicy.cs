@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,27 +25,27 @@ namespace ElementIoT.Particle.Operational.Logging
 
         public void LogCritical(LogEntry log)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine(log.ToString());
         }
 
         public void LogError(LogEntry log)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine(log.ToString());
         }
 
         public void LogInfo(LogEntry log)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine(log.ToString());
         }
 
         public void LogTrace(LogEntry log)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine(log.ToString());
         }
 
         public void LogWarning(LogEntry log)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine(log.ToString());
         }
 
         #endregion
