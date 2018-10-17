@@ -34,8 +34,8 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
 
         [JsonIgnore]
         public string SenderIdentity
-        { get; set; }
-
+        { get; set; }       
+        
         #endregion
 
         #region Constructors

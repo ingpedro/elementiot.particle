@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ElementIoT.Particle.Infrastructure.Api
@@ -20,6 +21,28 @@ namespace ElementIoT.Particle.Infrastructure.Api
                     kvp => kvp.Key,
                     kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray())
                     .Where(m => m.Value.Count() > 0);
+            }
+
+            return null;
+        }
+
+
+        /// <summary>
+        /// Extension method to get a list of all ModelState error messages.
+        /// </summary>
+        /// <param name="modelState">model state</param>
+        /// <returns>ModelState error messages</returns>
+        public static IEnumerable Errors(this ModelStateDictionary modelState, string[] errors)
+        {
+            Dictionary<string, string[]> modelErrors;
+
+            if (!modelState.IsValid)
+            {
+                modelErrors = modelState.ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray());
+
+                modelErrors.Add("service", errors);
             }
 
             return null;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ElementIoT.Particle.Operational.Error
 {
@@ -14,6 +15,9 @@ namespace ElementIoT.Particle.Operational.Error
 
         public ErrorReasonTypeEnum ErrorReasonType { get; }
 
+        public IEnumerable<string> Errors
+        { get; set; }
+
         #endregion
 
         #region Constructors
@@ -22,10 +26,11 @@ namespace ElementIoT.Particle.Operational.Error
         /// Initializes a new instance of the <see cref="IoTException" /> class.
         /// </summary>
         /// <param name="message">A message that describes the error.</param>
-        public IoTException(string message, ErrorReasonTypeEnum errorReasonType = ErrorReasonTypeEnum.Unknown)
+        public IoTException(string message, ErrorReasonTypeEnum errorReasonType = ErrorReasonTypeEnum.Unknown, IEnumerable<string> errors = null)
             : this(message, null)
         {
-            ErrorReasonType = errorReasonType;
+            this.ErrorReasonType = errorReasonType;
+            this.Errors = errors;
         }
 
         /// <summary>

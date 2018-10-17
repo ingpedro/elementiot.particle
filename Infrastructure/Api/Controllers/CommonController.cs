@@ -106,7 +106,7 @@ namespace ElementIoT.Particle.Infrastructure.Api
 
             // this.LogService.LogError(exception, ErrorMessages.Error_Unhandled_Exception);
 
-            var errorResponse = new ErrorResponse(errorCode ?? "Error Code 001", errorMessage ?? exception.Message);
+            var errorResponse = new ErrorResponse(errorCode ?? "Error Code 001", errorMessage ?? exception.Message, ioTException.Errors);
 
             ObjectResult result = null;
             switch (ioTException.ErrorReasonType)
@@ -116,6 +116,9 @@ namespace ElementIoT.Particle.Infrastructure.Api
                     break;
                 case ErrorReasonTypeEnum.Unknown:
                     result = StatusCode((int)HttpStatusCode.InternalServerError, errorResponse);
+                    break;
+                case ErrorReasonTypeEnum.Validation:
+                    result = StatusCode((int)HttpStatusCode.BadRequest, errorResponse);
                     break;
             }
 
