@@ -18,5 +18,6 @@ namespace ElementIoT.Particle.Operational.Error
         Authorization = 2,
         Validation = 3,
         Configuration = 4,
+        DataProvider = 5,
     }
 }
