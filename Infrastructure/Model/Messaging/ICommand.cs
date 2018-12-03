@@ -30,7 +30,7 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         /// <value>
         /// The handled date.
         /// </value>
-        DateTime? HandledDate
+        DateTime? HandleEnd
         { get; }
     }
 }

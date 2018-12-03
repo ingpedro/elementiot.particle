@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ElementIoT.Particle.Infrastructure.Model.Messaging
 {
-    public class CommandFailedEvent : MessagingEvent, INotification
+    public class CommandReceivedEvent : MessagingEvent, INotification
     {
         #region Fields
 
@@ -14,7 +14,7 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         #region Properties
 
         /// <summary>
-        /// Gets the failed command.
+        /// Gets the received command.
         /// </summary>
         /// <value>
         /// The failed command.
@@ -27,10 +27,10 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommandFailedEvent"/> class.
+        /// Initializes a new instance of the <see cref="CommandReceivedEvent"/> class.
         /// </summary>
         /// <param name="command">The command.</param>
-        public CommandFailedEvent(MessagingCommand command)
+        public CommandReceivedEvent(MessagingCommand command)
         {
             this.IsRetry = false;
             this.Command = command;

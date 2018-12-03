@@ -21,11 +21,19 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         { get; private set; }
 
         [JsonIgnore]
+        public abstract string Domain
+        { get; set; }
+
+        [JsonIgnore]
         public DateTime? ReceivedDate
         { get; private set; }
 
         [JsonIgnore]
-        public DateTime? HandledDate
+        public DateTime? HandleStart
+        { get; private set; }
+
+        [JsonIgnore]
+        public DateTime? HandleEnd
         { get; private set; }
 
         [JsonIgnore]
@@ -45,8 +53,10 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         /// </summary>
         public MessagingCommand()
         {
+            this.Id = Guid.NewGuid();
             this.ReceivedDate = DateTime.UtcNow;
-            this.HandledDate = null;
+            this.HandleStart = null;
+            this.HandleEnd = null;
 
             this.SenderIdentity = Environment.UserName;
         }
@@ -56,11 +66,19 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         #region Methods
 
         /// <summary>
-        /// Handleds this instance.
+        /// Indicates the start of the handling of the command.
+        /// </summary>
+        public void Handle()
+        {
+            this.HandleStart = DateTime.UtcNow;
+        }
+
+        /// <summary>
+        /// Indicates the end of the handling of the command.
         /// </summary>
         public void Handled()
         {
-            this.HandledDate = DateTime.UtcNow;
+            this.HandleEnd = DateTime.UtcNow;
         }
 
         /// <summary>
@@ -71,7 +89,7 @@ namespace ElementIoT.Particle.Infrastructure.Model.Messaging
         /// </returns>
         public override string ToString()
         {            
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.None);
         }
 
         /// <summary>

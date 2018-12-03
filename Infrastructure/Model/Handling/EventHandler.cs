@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ElementIoT.Particle.Infrastructure.Model.Handling
 {
-    public class EventHandler<T>: IEventHandler<T> where T : IEvent
+    public class EventHandler: IEventHandler
     {
         #region Fields
         #endregion
@@ -52,16 +52,6 @@ namespace ElementIoT.Particle.Infrastructure.Model.Handling
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Handles the specified message.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <returns></returns>
-        public virtual async Task Handle(T message)
-        {
-            return;
-        }
 
         /// <summary>
         /// Handles an error received or thrown in the Api layer and returns an HTTP 500 result with the given error message.
